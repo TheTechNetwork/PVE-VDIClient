@@ -1,29 +1,20 @@
-name: build
+name: VirusTotal Scan
 
 on:
   pull_request:
   push:
 
 jobs:
-  build:
+  scan:
     runs-on: ubuntu-latest
+
     steps:
-      -
-        name: Checkout
-        uses: actions/checkout@v4
-      -
-        name: Set up Go
-        uses: actions/setup-go@v4
-      -
-        name: Build
-        run: |
-          GOOS=windows GOARCH=386 go build -o ./ghaction-virustotal-win32.exe -v -ldflags "-s -w"
-          GOOS=windows GOARCH=amd64 go build -o ./ghaction-virustotal-win64.exe -v -ldflags "-s -w"
-      -
-        name: VirusTotal Scan
-        uses: crazy-max/ghaction-virustotal@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Scan files
+        uses: crazy-max/ghaction-virustotal@v3
         with:
           vt_api_key: ${{ secrets.VT_API_KEY }}
           files: |
-            ./ghaction-virustotal-win32.exe
-            ./ghaction-virustotal-win64.exe
+            *.*
