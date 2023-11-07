@@ -1,5 +1,5 @@
 name: VirusTotal GitHub Action
- uses: crazy-max/ghaction-virustotal@v4.0.0
+  uses: crazy-max/ghaction-virustotal@v4.0.0
             
 name: build
 
