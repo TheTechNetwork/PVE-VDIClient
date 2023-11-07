@@ -1,4 +1,4 @@
--name: VirusTotal GitHub Action
+name: VirusTotal GitHub Action
  uses: crazy-max/ghaction-virustotal@v4.0.0
             
 name: build
